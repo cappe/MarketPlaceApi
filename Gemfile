@@ -15,6 +15,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 group :production do
