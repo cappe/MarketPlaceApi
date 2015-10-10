@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'api_constraints'
 
 describe ApiConstraints do
