@@ -16,4 +16,4 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-MarketPlaceApi::Application.config.secret_token = '11deef84877a1575d5a5db14d2ce5fde5026a715d19d0fa96f63550ae95be273fa4637d54a7e2bb0c74965af764d4dcb4928a5c89916318d851f70adc37a840b'
+MarketPlace::Application.config.secret_token = '11deef84877a1575d5a5db14d2ce5fde5026a715d19d0fa96f63550ae95be273fa4637d54a7e2bb0c74965af764d4dcb4928a5c89916318d851f70adc37a840b'
