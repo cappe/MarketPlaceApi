@@ -1,9 +1,9 @@
 guard :rspec, cmd: 'bundle exec rspec' do
   watch('spec/spec_helper.rb')                        { "spec" }
-  watch('config/routes.rb')                           { "spec/api_constraints" }
+  watch('config/routes.rb')                           { "spec" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   watch(%r{^app/models/(.+)\.rb$})                    { |m| "spec/models/#{m[1]}_spec.rb"}
-  watch(%r{^app/controllers/(.+)\.rb$})               { |m| "spec/controllers/#{m[1]}_spec.rb"}
+  watch(%r{^app/controllers/api/v1/(.+)\.rb$})               { |m| "spec/controllers/api/v1/#{m[1]}_spec.rb"}
   watch(%r{^spec/.+_spec\.rb$})
   # watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   # watch(%r{^app/(.*)(\.erb|\.haml|\.slim)$})          { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }

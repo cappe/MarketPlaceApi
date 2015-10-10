@@ -5,6 +5,7 @@ gem 'rails', '4.2.0'
 gem 'rails-api'
 gem 'pg'
 gem 'devise'
+gem 'responders', '~> 2.0'
 
 group :development, :test do
   gem 'spring'
