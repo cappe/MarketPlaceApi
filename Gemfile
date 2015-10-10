@@ -4,6 +4,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 gem 'rails-api'
 gem 'pg'
+gem 'devise'
 
 group :development, :test do
   gem 'spring'
