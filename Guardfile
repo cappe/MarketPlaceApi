@@ -4,6 +4,7 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch('config/routes.rb')                           { "spec" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 
+  watch(%r{^app/serializers/(.+)\.rb$})               { "spec" }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch(%r{^app/controllers/concerns/(.+)\.rb$})                   { |m| "spec/controllers/concerns/#{m[1]}_spec.rb" }
   watch(%r{^app/models/(.+)\.rb$})                    { |m| "spec/models/#{m[1]}_spec.rb"}
