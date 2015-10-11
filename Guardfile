@@ -1,8 +1,11 @@
 guard :rspec, cmd: 'bundle exec rspec' do
+  watch('spec/rails_helper.rb')                       { "spec" }
   watch('spec/spec_helper.rb')                        { "spec" }
   watch('config/routes.rb')                           { "spec" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
-  watch('app/controllers/auth/authenticable.rb')      { "spec/controllers/auth" }
+
+  watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
+  watch(%r{^app/controllers/concerns/(.+)\.rb$})                   { |m| "spec/controllers/concerns/#{m[1]}_spec.rb" }
   watch(%r{^app/models/(.+)\.rb$})                    { |m| "spec/models/#{m[1]}_spec.rb"}
   watch(%r{^app/controllers/api/v1/(.+)\.rb$})               { |m| "spec/controllers/api/v1/#{m[1]}_spec.rb"}
   watch(%r{^spec/.+_spec\.rb$})

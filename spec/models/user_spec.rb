@@ -5,19 +5,19 @@ RSpec.describe User, type: :model do
 
   subject { @user }
 
-  it { expect respond_to(:email) }
-  it { expect respond_to(:password) }
-  it { expect respond_to(:password_confirmation) }
+  it { should respond_to(:email) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
 
-  it { expect be_valid }
+  it { should be_valid }
 
-  it { expect validate_presence_of(:email) }
-  it { expect validate_uniqueness_of(:email).case_insensitive }
-  it { expect validate_confirmation_of(:password) }
-  it { expect allow_value('example@domain.com').for(:email) }
+  it { should validate_presence_of(:email) }
+  it { should validate_uniqueness_of(:email).case_insensitive }
+  it { should validate_confirmation_of(:password) }
+  it { should allow_value('example@domain.com').for(:email) }
 
-  it { expect respond_to(:auth_token) }
-  it { expect validate_uniqueness_of(:auth_token) }
+  it { should respond_to(:auth_token) }
+  it { should validate_uniqueness_of(:auth_token) }
 
   describe "#generate_authentication_token!" do
     it "generates a unique token" do
