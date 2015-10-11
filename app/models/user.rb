@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   before_create :generate_authentication_token!
   before_save :downcase_email
 
+  has_many :products, dependent: :destroy
+
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token

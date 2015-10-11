@@ -5,19 +5,19 @@ RSpec.describe User, type: :model do
 
   subject { @user }
 
-  it { expect respond_to(:email) }
-  it { expect respond_to(:password) }
-  it { expect respond_to(:password_confirmation) }
+  it { should respond_to(:email) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
 
-  it { expect be_valid }
+  it { should be_valid }
 
-  it { expect validate_presence_of(:email) }
-  it { expect validate_uniqueness_of(:email).case_insensitive }
-  it { expect validate_confirmation_of(:password) }
-  it { expect allow_value('example@domain.com').for(:email) }
+  it { should validate_presence_of(:email) }
+  it { should validate_uniqueness_of(:email).case_insensitive }
+  it { should validate_confirmation_of(:password) }
+  it { should allow_value('example@domain.com').for(:email) }
 
-  it { expect respond_to(:auth_token) }
-  it { expect validate_uniqueness_of(:auth_token) }
+  it { should respond_to(:auth_token) }
+  it { should validate_uniqueness_of(:auth_token) }
 
   describe "#generate_authentication_token!" do
     it "generates a unique token" do
@@ -30,6 +30,23 @@ RSpec.describe User, type: :model do
       existing_user = FactoryGirl.create(:user, auth_token: "auniquetoken123")
       @user.generate_authentication_token!
       expect(@user.auth_token).not_to eql existing_user.auth_token
+    end
+  end
+
+  it { should have_many(:products)}
+
+  describe "#products association" do
+    before do
+      @user.save
+      3.times { FactoryGirl.create :product, user_id: @user.id }
+    end
+
+    it "destroys the associated products on self destruct" do
+      products = @user.products
+      @user.destroy
+      products.each do |product|
+        expect(Product.find(product)).to raise_error ActiveRecord::RecordNotFound
+      end
     end
   end
 end
