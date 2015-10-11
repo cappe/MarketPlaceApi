@@ -96,5 +96,5 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     it { should respond_with 204 }
   end
-  
+
 end
