@@ -1,4 +1,3 @@
-class ProductSerializer < ActiveModel::Serializer
-  attributes :id, :title, :price, :published
+class ProductSerializer < ShortProductSerializer
   has_one :user
 end
