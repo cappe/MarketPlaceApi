@@ -114,4 +114,7 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  it { should have_many(:placements) }
+  it { should have_many(:orders).through(:placements) }
 end
