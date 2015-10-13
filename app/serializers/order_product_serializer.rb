@@ -1,0 +1,2 @@
+class OrderProductSerializer < ProductSerializer
+end

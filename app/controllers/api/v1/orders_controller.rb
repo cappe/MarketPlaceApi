@@ -10,6 +10,7 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def create
+    logger.debug params
     order = current_user.orders.build(order_params)
 
     if order.save
@@ -22,6 +23,6 @@ class Api::V1::OrdersController < ApplicationController
   private
 
     def order_params
-      params.require(:order).permit(product_ids: [])
+      params.require(:order).permit(:product_ids)
     end
 end
