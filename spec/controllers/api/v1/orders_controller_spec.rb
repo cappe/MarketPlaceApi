@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/shared_examples/pagination'
 
 RSpec.describe Api::V1::OrdersController, type: :controller do
 
@@ -14,6 +15,8 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
       orders_response = json_response[:orders]
       expect(orders_response.size).to eql(4)
     end
+
+    it_behaves_like "paginated list"
 
     it { should respond_with 200 }
   end
@@ -64,14 +67,8 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
 
     it "embeds the two product objects related to the order" do
       order_response = json_response[:order]
-      expect(order_response[:products].size).to eql 2
+      expect(order_response[:products].size).to eql(2)
     end
-
-    it { expect(json_response).to have_key(:meta) }
-    it { expect(json_response[:meta]).to have_key(:pagination) }
-    it { expect(json_response[:meta][:pagination]).to have_key(:per_page) }
-    it { expect(json_response[:meta][:pagination]).to have_key(:total_pages) }
-    it { expect(json_response[:meta][:pagination]).to have_key(:total_objects) }
 
     it { should respond_with 201 }
   end

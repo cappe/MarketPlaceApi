@@ -2,10 +2,10 @@ class Api::V1::OrdersController < ApplicationController
   before_action :authenticate_with_token!
 
   def index
-    orders = current_user.orders
-    render json: orders, meta: { pagination: { per_page: params[:per_page],
+    orders = current_user.orders.page(params[:page]).per(params[:per_page])
+    render(json: orders, meta: { pagination: { per_page: params[:per_page],
                                                total_pages: orders.total_pages,
-                                               total_objects: orders.total_count } }
+                                               total_objects: orders.total_count } })
   end
 
   def show
