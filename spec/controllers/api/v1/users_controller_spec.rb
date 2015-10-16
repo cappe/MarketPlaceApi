@@ -5,6 +5,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create :user
+      api_authorization_header(@user.auth_token)
       get :show, id: @user.id
     end
 
@@ -18,6 +19,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     it "has the products as an embeded object" do
       user_response = json_response[:user]
       expect(user_response[:product_ids]).to eql []
+    end
+
+    it "returns the logged in user instead of some other user" do
+      @another_user = FactoryGirl.create :user
+      get :show, id: @another_user
+      user_response = json_response[:user]
+      expect(user_response[:email]).to eql @user.email
     end
   end
 
